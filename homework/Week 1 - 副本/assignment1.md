@@ -2,11 +2,6 @@
 
 Updated 1626 GMT+8 Sep 19, 2025
 
-2025 fall, Complied by <mark> 徐前 物理学院</mark>
-
-Canvas头像
-![alt text](白底照片-1.jpg)
-
 **作业的各项评分细则及对应的得分**
 
 | 标准                                 | 等级                                                         | 得分 |
