@@ -7,47 +7,43 @@ def solve() -> None:
         return
 
     n = data[0]
-    prices = data[1 : n + 1]
-
-    inf = 10**30
-    a = [inf]
-    a.extend(prices)
+    a = [10**30] + data[1 : n + 1]
 
     ans = 0
-    stack_val = []
-    stack_best = []
+    st = []
 
-    push_val = stack_val.append
-    push_best = stack_best.append
-    pop_val = stack_val.pop
-    pop_best = stack_best.pop
+    st_append = st.append
+    st_pop = st.pop
+    arr = a
 
     for j in range(n + 1):
-        aj = a[j]
-        mn = inf
+        aj = arr[j]
+        mn = 10**30
         pos = -1
 
-        while stack_val and stack_val[-1] < aj:
-            t = pop_best()
-            pop_val()
-            at = a[t]
-            if at < mn:
-                mn = at
-                pos = t
+        while st and st[-1][1] < aj:
+            tmp = st_pop()[2]
+            if tmp != -1:
+                at = arr[tmp]
+                if at < mn:
+                    mn = at
+                    pos = tmp
 
-        if stack_val:
-            t = stack_best[-1]
-            at = a[t]
-            if at < mn:
-                mn = at
-                pos = t
+        if st:
+            top_best = st[-1][2]
+            if top_best != -1:
+                at = arr[top_best]
+                if at < mn:
+                    mn = at
+                    pos = top_best
+                else:
+                    st[-1][2] = pos
             else:
-                stack_best[-1] = pos
+                st[-1][2] = pos
 
-        push_val(aj)
-        push_best(j)
+        st_append([j, aj, j])
 
-        if pos != -1:
+        if pos != -1 and arr[pos] < aj:
             length = j - pos + 1
             if length > ans:
                 ans = length
